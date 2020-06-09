@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'static#root'
   get "/login", to: "static#login"
-  get "/:any", to: "static#root"
+  get "/r/:name", to: "static#root"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

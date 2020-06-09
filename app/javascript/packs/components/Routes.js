@@ -1,30 +1,23 @@
 import {
-  Link, Switch, Route, useHistory,
+  BrowserRouter as Router, Switch, Route, Link,
 } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Hello from './Hello';
+import React from 'react';
+import Sub from './Sub';
+import HomePage from './HomePage';
+import Nav from './Nav';
 
-
-const Routes = ({ initialUrl }) => {
-  const history = useHistory();
-  useEffect(() => {
-    // history.push(initialUrl);
-  }, []);
-
-  return (
-    <>
-      <Link to="/dogo">Dogo</Link>
-      <Link to="/">/</Link>
-      <Switch>
-        <Route path="/:name"><Hello /></Route>
-      </Switch>
-    </>
-  );
-};
-
-Routes.propTypes = {
-  initialUrl: PropTypes.string.isRequired,
-};
+const Routes = () => (
+  <Router>
+    <Nav isLoggedIn />
+    <ul>
+      <li><Link to="/r/league/">league</Link></li>
+      <li><Link to="/">home</Link></li>
+    </ul>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/r/:sub" component={Sub} />
+    </Switch>
+  </Router>
+);
 
 export default Routes;
